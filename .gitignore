@@ -222,7 +222,7 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Authorized upstream and private generated packages; never publish these.
+# Raw upstream and local build trees never enter Git. Authorized beta assets go to Releases only.
 /install-0.6.5.cjs
 /.local/
 /node_modules/

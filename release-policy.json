@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "repository": "3086013261qq-hue/dona-QuickV",
+  "public_distribution_authorized": true,
+  "confirmed_by": "仓库所有者于 2026-11-27 的开发会话确认，授权由其留存",
+  "scope": "完整二改 CJS、包含其的交付 ZIP 及完成安装/更新/恢复所必需的同一授权源码文件",
+  "upstream_runtime_redistribution": false,
+  "raw_installer_publication": false,
+  "merge_main": false
+}

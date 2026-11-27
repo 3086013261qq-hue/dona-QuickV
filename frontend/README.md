@@ -6,7 +6,7 @@ theme/panel.css 为现有皮肤初稿。最终交付独立替换版 plugin/publi
 ## 悬浮播报
 theme/extension.css 为前期风格参考，后续独立酒馆助手脚本采用专属命名空间；只观察原版等待与故障提示状态，不承担管理面板功能，不改变请求行为。不得隐藏必要的原版操作。原版扩展继续运行。卸载时清理自己创建的 DOM、样式、监听与观察器。
 
-现已实现私有本地构建与状态桥：`python tools/build_release.py install-0.6.5.cjs`。构建会调用 `frontend/tools/build_panel.py` 的面板生成函数，将现有皮肤与原 CSS 合并，再静态回填原安装清单并重算摘要。业务 `app.js` 保持逐字节一致。
+现已实现本地构建与状态桥：`python tools/build_release.py install-0.6.5.cjs`。构建会调用 `frontend/tools/build_panel.py` 的面板生成函数，将现有皮肤与原 CSS 合并，再静态回填原安装清单并重算摘要。业务 `app.js` 保持逐字节一致。公开 beta 通过 `python tools/prepare_beta.py` 构建，增加固定版本安装/恢复入口与助手导入 JSON，不改变 UI。
 
 `integration/` 包含自研的脱敏字段采集与事件桥；`tools/build_release.py` 对固定 SHA-256 原版应用精确插入观察钩子，不复制原手机源码到 Git。受保护的原版 failure-status 接口附加本轮数字字段，复用原扩展既有轮询，播报脚本不发网络请求。
 
