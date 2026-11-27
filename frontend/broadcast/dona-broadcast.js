@@ -30,15 +30,17 @@
   panel.append(head,title,detail,el('div','dq-line'));
   doc.head.append(style); doc.body.append(panel);
   let key='', dismissed='', timeout=null, raf=null, activeRun=null, seq=-1, bridge=false, destroyed=false;
+  const seenRuns=new Set();
   function hide(){clearTimeout(timeout);timeout=null;panel.hidden=true;}
   function show(next,label,body,tone='wait',duration=0){
-    if(next!==key){key=next;dismissed='';clearTimeout(timeout);timeout=null;}
+    const changed=next!==key;
+    if(changed){key=next;dismissed='';clearTimeout(timeout);timeout=null;}
     if(dismissed===next)return;
     if(title.textContent!==label)title.textContent=label;
     if(detail.textContent!==body)detail.textContent=body;
     panel.dataset.tone=tone;
     const wasHidden=panel.hidden;panel.hidden=false;
-    if(duration && timeout===null && wasHidden)timeout=setTimeout(()=>{dismissed=next;hide();},duration);
+    if(duration && timeout===null && (wasHidden||changed))timeout=setTimeout(()=>{dismissed=next;hide();},duration);
   }
   close.addEventListener('click',()=>{dismissed=key;hide();});
   const codes={400:'请求无效',401:'身份验证失败',403:'访问被拒绝',404:'资源不存在',408:'请求超时',413:'请求过大',429:'上游请求受限',500:'服务内部错误',502:'网关连接异常',503:'服务暂不可用',504:'上游响应超时'};
@@ -80,7 +82,8 @@
     const d=e.detail;
     if(!d||d.version!==1||typeof d.runId!=='string'||!/^[a-zA-Z0-9_-]{1,96}$/.test(d.runId)||!validNumber(d.seq))return;
     if(d.type==='start'){
-      if(d.runId===activeRun)return;
+      if(seenRuns.has(d.runId))return;
+      seenRuns.add(d.runId);if(seenRuns.size>64)seenRuns.delete(seenRuns.values().next().value);
       activeRun=d.runId;seq=-1;bridge=true;
     }
     if(!bridge||d.runId!==activeRun||d.seq<=seq)return;
@@ -100,8 +103,7 @@
       for(const [k,label] of [['inputTokens','提示词'],['thinkingAndOutputTokens','思考与生成'],['totalTokens','总 Token']])if(validNumber(d[k]))items.push(label+'  '+d[k].toLocaleString('zh-CN'));
       if(typeof d.transferSeconds==='number'&&Number.isFinite(d.transferSeconds)&&d.transferSeconds>=0)items.push('成功传输  '+d.transferSeconds.toFixed(1)+'s');
       show(prefix+'complete','生成完毕 / 作战结算',items.join('\n')||'本轮未提供用量统计','ok',8000);
-      bridge=false;activeRun=null; // DOM fallback must not overwrite the settlement until a new generation.
-      bridge=true;
+      activeRun=null; // Once an event bridge is active, it owns status until the next start event.
     }else if(d.type==='failed'||d.type==='cancelled'){
       show(prefix+d.type,d.type==='failed'?'请求未完成':'已取消',model,d.type==='failed'?'error':'wait',d.type==='cancelled'?2500:0);
       activeRun=null;
