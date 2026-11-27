@@ -19,9 +19,10 @@
 | 酒馆集成 | 独立控制台 | extension/index.js, connect.js | 前端适配原控件；不重新实现凭据管理 |
 | 设备上下文 | PC 文档未显示 | extension/device-context.js | 仅展示必要的本地状态，不上传设备信息 |
 | 安装维护 | Docker/持久化目录 | install 脚本下载、归档验证、安装事务、运行时复用 | 保留校验及回滚；增量更新待实测 |
-| 凭据 | PC 文档另列认证模式 | plugin setup/cookie-setup | dona 首版仅支持正式授权 API；不实现私有控制台接口转发、配额规避或会话 Cookie 收集 |
+| 凭据 | PC 文档另列认证模式 | plugin setup/cookie-setup | 现有安装独立管理原配置；美化层不读写凭据、不新增认证或转发机制 |
 
-## 确认的优化候选
+## 非首发任务：历史优化候选
+以下仅为记录，不是美化项目必做事项。首发不改后端，只有实测缺陷或明确需求才重新评估。
 1. 缓冲容量：mobile resumable.py append 与 store _evict_locked 分离；检查单任务与全局内存硬限制、清理时机。默认 TTL 1800 秒、200 streams。先写长文本压力测试，再调整。不得丢已确认正文而显示成功。
 2. 轮询：extension/failure-client.js POLL_MS=750；panel app.js 常规状态轮询 10s、操作忙碌 2.5s，visibilitychange 已停止若干轮询。因此不重复实现已有功能；测试聊天失败轮询后台行为，按状态退避并清理计时器。
 3. 生命周期：区分主动取消、短时断网、页面隐藏、服务进程被杀；安卓进程被杀后不保证原生成任务可恢复。
