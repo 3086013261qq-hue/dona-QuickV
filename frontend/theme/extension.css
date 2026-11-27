@@ -1,0 +1,12 @@
+/* Scope every override to the existing Quick V extension. */
+#quick-v-extension-entry{background:#1c2025;color:#edf0f3;border:1px solid #39414b;border-left:3px solid #f5d449;border-radius:0;text-shadow:none}
+#quick-v-extension-entry h4{color:#f5d449;font-weight:750;letter-spacing:.05em}
+#quick-v-extension-entry .quick-v-open{background:#f5d449;color:#17191b;border:1px solid #f5d449;border-radius:0;font-weight:750}
+#quick-v-dialog{border:1px solid #59616c;border-radius:0;background:#101216}
+#quick-v-dialog::backdrop{background:#090b0ee0}
+#quick-v-dialog .quick-v-dialog-close{background:#1c2025;color:#f5d449;border-bottom:1px solid #39414b;border-radius:0}
+#quick-v-chat-wait{background:#1c2025;color:#f5d449;border:1px solid #5c552e;border-radius:0;font-variant-numeric:tabular-nums}
+#quick-v-failure-notice{background:#302024;color:#edf0f3;border:1px solid #a75b5a;border-left:3px solid #ff9390;border-radius:0}
+#quick-v-failure-notice summary{color:#ff9390;border-radius:0}
+#quick-v-failure-notice .qv-failure-retry{border-radius:0;background:#59353a;color:#ffd0ce}
+#quick-v-failure-notice[data-phase="finished"]{background:#242930;border-color:#59616c}
