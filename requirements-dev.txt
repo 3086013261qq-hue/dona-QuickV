@@ -1,0 +1,2 @@
+# Tests only. No runtime dependency is added to Quick V.
+playwright==1.64.0

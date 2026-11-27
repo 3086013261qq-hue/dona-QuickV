@@ -221,3 +221,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Authorized upstream and private generated packages; never publish these.
+/install-0.6.5.cjs
+/.local/
+/node_modules/
