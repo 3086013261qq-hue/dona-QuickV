@@ -16,10 +16,10 @@ class BetaTests(unittest.TestCase):
         commands=json.loads((OUT/'commands.json').read_text())
         readme=(ROOT/'README.md').read_text(encoding='utf-8')
         for mode,command in commands.items():
-            self.assertIn('@v0.1.0-beta.1',json.loads((ROOT/'frontend/broadcast/imports/v0.1.0-beta.1.json').read_text(encoding='utf-8'))['content'])
+            self.assertIn('@v0.1.0-beta.2',json.loads((ROOT/'frontend/broadcast/imports/v0.1.0-beta.2.json').read_text(encoding='utf-8'))['content'])
             self.assertIn(version['bootstrap']['sha256'],command)
             self.assertLess(command.index('sha256sum -c -'),command.index('&& node '))
-            self.assertIn('releases/download/v0.1.0-beta.1/install-dona.cjs',command)
+            self.assertIn('releases/download/v0.1.0-beta.2/install-dona.cjs',command)
             self.assertIn(command,readme)
             self.assertTrue(command.endswith(mode+')'))
 
@@ -28,8 +28,8 @@ class BetaTests(unittest.TestCase):
         for line in (OUT/'SHA256SUMS').read_text().splitlines():
             digest,name=line.split('  ',1);names.append(name)
             self.assertEqual(hashlib.sha256((OUT/name).read_bytes()).hexdigest(),digest,name)
-        self.assertIn('quick-v-0.6.5-dona-0.1.0-beta.1.zip',names)
-        with zipfile.ZipFile(OUT/'quick-v-0.6.5-dona-0.1.0-beta.1.zip') as z:self.assertIsNone(z.testzip())
+        self.assertIn('quick-v-0.6.5-dona-0.1.0-beta.2.zip',names)
+        with zipfile.ZipFile(OUT/'quick-v-0.6.5-dona-0.1.0-beta.2.zip') as z:self.assertIsNone(z.testzip())
 
     def test_actual_helper_file_import_contract(self):
         d=json.loads((OUT/'dona-broadcast.tavern-helper.json').read_text(encoding='utf-8'))

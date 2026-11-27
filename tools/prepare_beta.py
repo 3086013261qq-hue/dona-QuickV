@@ -14,7 +14,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
 import build_release as build
 
-VERSION='0.1.0-beta.1'
+VERSION='0.1.0-beta.2'
 REPO='3086013261qq-hue/dona-QuickV'
 TAG='v'+VERSION
 BASE=f'https://github.com/{REPO}/releases/download/{TAG}/'

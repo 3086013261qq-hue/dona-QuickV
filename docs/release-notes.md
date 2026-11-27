@@ -1,4 +1,6 @@
-# v0.1.0-beta.1 · 安装与发布流程测试
+# v0.1.0-beta.2 · 安装与发布流程测试
+
+此版本修正 beta.1 安装入口对原生 Android Node 构建的平台识别，接受 android/linux 两种平台值，仍要求 ARM64、Node.js 18+、toybox 和原 SillyDroid 环境/目录/锁校验。依据 [Node.js 官方 process.platform 文档](https://nodejs.org/api/process.html#processplatform)。beta.1 文件与摘要不覆盖；请使用本版本固定命令。
 
 **全新安装资源阻塞：不能作为只有 SillyDroid 用户的完整可用安装交付。** 原作者正式下载地址在开发端普通 GET 返回 HTTP 403/连接错误。6 个运行包分片及 3 个代码包分片尚未获得，未核实正式备用源。详见随包 `resources.md` / `resource-status.json`。手机端可能有不同的访问结果，但未下载校验及真机安装前不宣称通过。
 

@@ -1,4 +1,4 @@
-# 快速 V 0.6.5 · dona美化 v0.1.0-beta.1 安装说明
+# 快速 V 0.6.5 · dona美化 v0.1.0-beta.2 安装说明
 
 全新安装是首要验收项，但目前**被原作者外部运行资源获取阻塞**，不能视为完整可用交付。只有 SillyDroid 的手机仍须取得 Quick V 的 Python 运行包和代码依赖包，SillyDroid 自身运行环境不能直接替代。详见 `resources.md`、`resource-status.json`。
 

@@ -92,6 +92,11 @@ test('unsupported platform is rejected before network access',async()=>{
   if(process.platform==='linux'&&process.arch==='arm64')return;
   await assert.rejects(run('install',{download:()=>{throw Error('network must not run')}}),/安卓 ARM64/);
 });
+test('native Android and Linux ARM64 Node builds retain all original host requirements',()=>{
+  for(const platform of ['android','linux'])assert.equal(installer.supportedPlatform({platform,arch:'arm64',hasToybox:true,nodeMajor:18}),true);
+  for(const override of [{platform:'win32'},{arch:'x64'},{hasToybox:false},{nodeMajor:16}])
+    assert.equal(installer.supportedPlatform({platform:'android',arch:'arm64',hasToybox:true,nodeMajor:18,...override}),false);
+});
 test('HTTPS download accepts only exact pinned bytes before use',async t=>{
   const https=require('node:https');const {EventEmitter}=require('node:events');const {Readable}=require('node:stream');
   const previous=https.get;t.after(()=>{https.get=previous;});

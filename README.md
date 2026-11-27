@@ -1,10 +1,10 @@
 # dona-QuickV
 
-**v0.1.0-beta.1：全新安装资源阻塞，尚不能作为完整可用交付。** 2026-11-27 从开发环境以普通 GET 访问原作者正式地址及运行分片，返回 HTTP 403/连接错误。尚未找到可核实的正式备用源。只有 SillyDroid、还未装 Quick V 的用户，请先阅读[缺失资源与获取方式](docs/resources.md)。
+**v0.1.0-beta.2：全新安装资源阻塞，尚不能作为完整可用交付。** 2026-11-27 从开发环境以普通 GET 访问原作者正式地址及运行分片，返回 HTTP 403/连接错误。尚未找到可核实的正式备用源。只有 SillyDroid、还未装 Quick V 的用户，请先阅读[缺失资源与获取方式](docs/resources.md)。
 
 ## 1. 项目介绍与署名
 
-在 Quick V 0.6.5 原功能上加入绒绒设计的明日方舟风格面板，以及可独立安装的「dona快V · 战术播报」。面板名称为「快速 V 0.6.5 · dona美化」，不修改认证、转发、重试和模型业务。美化核心版本 `0.1.0`，本次发布流程版本 `0.1.0-beta.1`。
+在 Quick V 0.6.5 原功能上加入绒绒设计的明日方舟风格面板，以及可独立安装的「dona快V · 战术播报」。面板名称为「快速 V 0.6.5 · dona美化」，不修改认证、转发、重试和模型业务。美化核心版本 `0.1.0`，本次发布流程版本 `0.1.0-beta.2`。
 
 PC 上游：[bad-woman/vertex2openai](https://github.com/bad-woman/vertex2openai)，MIT 署名 `Copyright (c) 2025 gzzhongqi`。手机版保留原版 `author: Quick V` 声明，不推测手机作者姓名。用户明确确认允许公开二改分发，授权由其留存；运行环境及第三方依赖不在本仓库重新分发。详见[版权与授权](docs/third-party-notices.md)。
 
@@ -14,7 +14,7 @@ PC 上游：[bad-woman/vertex2openai](https://github.com/bad-woman/vertex2openai
 
 ## 3. 快速 V 本体安装
 
-[测试 Release](https://github.com/3086013261qq-hue/dona-QuickV/releases/tag/v0.1.0-beta.1)
+[测试 Release](https://github.com/3086013261qq-hue/dona-QuickV/releases/tag/v0.1.0-beta.2)
 
 **只有 SillyDroid：**命令支持进入完整安装流程，但必须取得原作者 Python 运行包和代码依赖包。当前开发环境未取得这些资源，不能保证现在能完成全新安装；不会拿覆盖安装冒充成功。资源不足时核对[缺失清单](docs/resources.md)，不要关闭校验或使用不明镜像。
 
@@ -23,16 +23,16 @@ PC 上游：[bad-woman/vertex2openai](https://github.com/bad-woman/vertex2openai
 在内置终端复制执行整条命令，无需电脑传文件：
 
 ```sh
-(umask 077; dona_tmp=$(/system/bin/toybox mktemp -d) && "$TERMUX_CURL_BIN" --fail --location --proto "=https" --proto-redir "=https" --connect-timeout 15 --max-time 120 --max-filesize 14141 -o "$dona_tmp/install.cjs" https://github.com/3086013261qq-hue/dona-QuickV/releases/download/v0.1.0-beta.1/install-dona.cjs && printf "%s  %s\n" 8e8e17ab021deb18db851fb01c25d4a2c073118ed64b7fbec31b23b4209ac713 "$dona_tmp/install.cjs" | /system/bin/toybox sha256sum -c - && node "$dona_tmp/install.cjs" install)
+(umask 077; dona_tmp=$(/system/bin/toybox mktemp -d) && "$TERMUX_CURL_BIN" --fail --location --proto "=https" --proto-redir "=https" --connect-timeout 15 --max-time 120 --max-filesize 14378 -o "$dona_tmp/install.cjs" https://github.com/3086013261qq-hue/dona-QuickV/releases/download/v0.1.0-beta.2/install-dona.cjs && printf "%s  %s\n" cd1b92032a280a0527e11a21378dcc13d7e4519bc3ca49da88cc67ccfdc03da9 "$dona_tmp/install.cjs" | /system/bin/toybox sha256sum -c - && node "$dona_tmp/install.cjs" install)
 ```
 
 命令先在私有临时目录下载固定入口、核对独立写死的 SHA-256，通过后才执行 Node；入口继续验证安装资源。完成后重启酒馆，在扩展设置打开快速 V。原版完整流程的环境、锁、空间、分片及总摘要、归档和回滚校验保留。
 
 ## 4. 酒馆助手播报导入
 
-手机点击下载[脚本导入 JSON](https://github.com/3086013261qq-hue/dona-QuickV/releases/download/v0.1.0-beta.1/dona-broadcast.tavern-helper.json)，进入 **酒馆助手 → 脚本库 → 全局脚本 → 导入**，选择下载的 JSON，再手动启用「dona快V · 战术播报」。官方导入器是文件选择器，不承诺粘贴网址即可导入。
+手机点击下载[脚本导入 JSON](https://github.com/3086013261qq-hue/dona-QuickV/releases/download/v0.1.0-beta.2/dona-broadcast.tavern-helper.json)，进入 **酒馆助手 → 脚本库 → 全局脚本 → 导入**，选择下载的 JSON，再手动启用「dona快V · 战术播报」。官方导入器是文件选择器，不承诺粘贴网址即可导入。
 
-固定版本 CDN：[导入 JSON](https://cdn.jsdelivr.net/gh/3086013261qq-hue/dona-QuickV@v0.1.0-beta.1/frontend/broadcast/imports/v0.1.0-beta.1.json)。若浏览器显示 JSON，先下载/保存再导入。加载器使用 GitHub + jsDelivr 固定标签，启用时只下载一次并核验播报源码，不轮询更新，不含本体安装逻辑。本体未安装时不会伪造状态或 Token。
+固定版本 CDN：[导入 JSON](https://cdn.jsdelivr.net/gh/3086013261qq-hue/dona-QuickV@v0.1.0-beta.2/frontend/broadcast/imports/v0.1.0-beta.2.json)。若浏览器显示 JSON，先下载/保存再导入。加载器使用 GitHub + jsDelivr 固定标签，启用时只下载一次并核验播报源码，不轮询更新，不含本体安装逻辑。本体未安装时不会伪造状态或 Token。
 
 ## 5. 更新与版本检查
 
@@ -41,7 +41,7 @@ PC 上游：[bad-woman/vertex2openai](https://github.com/bad-woman/vertex2openai
 只检查当前状态：
 
 ```sh
-(umask 077; dona_tmp=$(/system/bin/toybox mktemp -d) && "$TERMUX_CURL_BIN" --fail --location --proto "=https" --proto-redir "=https" --connect-timeout 15 --max-time 120 --max-filesize 14141 -o "$dona_tmp/install.cjs" https://github.com/3086013261qq-hue/dona-QuickV/releases/download/v0.1.0-beta.1/install-dona.cjs && printf "%s  %s\n" 8e8e17ab021deb18db851fb01c25d4a2c073118ed64b7fbec31b23b4209ac713 "$dona_tmp/install.cjs" | /system/bin/toybox sha256sum -c - && node "$dona_tmp/install.cjs" status)
+(umask 077; dona_tmp=$(/system/bin/toybox mktemp -d) && "$TERMUX_CURL_BIN" --fail --location --proto "=https" --proto-redir "=https" --connect-timeout 15 --max-time 120 --max-filesize 14378 -o "$dona_tmp/install.cjs" https://github.com/3086013261qq-hue/dona-QuickV/releases/download/v0.1.0-beta.2/install-dona.cjs && printf "%s  %s\n" cd1b92032a280a0527e11a21378dcc13d7e4519bc3ca49da88cc67ccfdc03da9 "$dona_tmp/install.cjs" | /system/bin/toybox sha256sum -c - && node "$dona_tmp/install.cjs" status)
 ```
 
 播报更新：关闭旧项，下载新测试版 JSON 并导入启用，确认后删除旧项。每版固定源码，不静默切换。
@@ -53,7 +53,7 @@ PC 上游：[bad-woman/vertex2openai](https://github.com/bad-woman/vertex2openai
 **恢复原版 Quick V 0.6.5：**先在原面板停止服务，再运行：
 
 ```sh
-(umask 077; dona_tmp=$(/system/bin/toybox mktemp -d) && "$TERMUX_CURL_BIN" --fail --location --proto "=https" --proto-redir "=https" --connect-timeout 15 --max-time 120 --max-filesize 14141 -o "$dona_tmp/install.cjs" https://github.com/3086013261qq-hue/dona-QuickV/releases/download/v0.1.0-beta.1/install-dona.cjs && printf "%s  %s\n" 8e8e17ab021deb18db851fb01c25d4a2c073118ed64b7fbec31b23b4209ac713 "$dona_tmp/install.cjs" | /system/bin/toybox sha256sum -c - && node "$dona_tmp/install.cjs" restore)
+(umask 077; dona_tmp=$(/system/bin/toybox mktemp -d) && "$TERMUX_CURL_BIN" --fail --location --proto "=https" --proto-redir "=https" --connect-timeout 15 --max-time 120 --max-filesize 14378 -o "$dona_tmp/install.cjs" https://github.com/3086013261qq-hue/dona-QuickV/releases/download/v0.1.0-beta.2/install-dona.cjs && printf "%s  %s\n" cd1b92032a280a0527e11a21378dcc13d7e4519bc3ca49da88cc67ccfdc03da9 "$dona_tmp/install.cjs" | /system/bin/toybox sha256sum -c - && node "$dona_tmp/install.cjs" restore)
 ```
 
 只恢复本测试版修改的静态文件并移除新增 dona 模块，不卸载 Quick V、不删除整个酒馆目录、不修改凭据和配置。完成后重启酒馆，按需关闭播报。可捕获的替换错误会恢复本次更改前的文件；断电/系统强杀恢复仍待真机验证。

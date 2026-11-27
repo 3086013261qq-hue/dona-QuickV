@@ -12,6 +12,9 @@ const { spawnSync } = require('node:child_process');
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const roots = { plugin: 'plugins/quick-v', extension: 'extensions/quick-v', app: 'quick-v-runtime/code-v2/app' };
 const owner = 'sillydroid-quick-v';
+function supportedPlatform({platform=process.platform,arch=process.arch,hasToybox=fs.existsSync('/system/bin/toybox'),nodeMajor=Number(process.versions.node.split('.')[0])}={}) {
+  return ['android','linux'].includes(platform) && arch==='arm64' && hasToybox && nodeMajor>=18;
+}
 
 async function regular(file) {
   const st = await fsp.lstat(file);
@@ -159,7 +162,7 @@ async function run(mode = 'install', deps = {}) {
   if (!['install','status','restore'].includes(mode)) throw new Error('只支持 install、status、restore。');
   if (!RELEASE) throw new Error('请使用 Release 中已生成的安装入口。');
   const report = deps.report || console.log;
-  if (!deps.skipPlatform && (process.platform !== 'linux' || process.arch !== 'arm64' || !fs.existsSync('/system/bin/toybox'))) throw new Error('请在安卓 ARM64 的 SillyDroid → 设置 → 内置终端运行。');
+  if (!deps.skipPlatform && !supportedPlatform()) throw new Error('请在安卓 ARM64 的 SillyDroid → 设置 → 内置终端使用 Node.js 18+ 运行。');
   const dataInput = deps.data || process.env.APP_DATA_ROOT || process.env.TAVERN_DATA_ROOT;
   const server = process.env.SERVER_DIR || process.env.TAVERN_SERVER_DIR;
   if (!dataInput || !path.isAbsolute(dataInput) || (!deps.skipPlatform && !server)) throw new Error('未找到 SillyDroid 内置终端环境。');
@@ -216,4 +219,4 @@ if (require.main === module) {
   process.umask(0o077);
   run(process.argv[2] || 'install').catch(e => { console.error('未完成：' + e.message);process.exitCode=1; });
 }
-module.exports={hash,getBytes,target,marker,classify,decodeChanges,transaction,run,assertStopped};
+module.exports={hash,getBytes,target,marker,classify,decodeChanges,transaction,run,assertStopped,supportedPlatform};

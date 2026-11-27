@@ -1,0 +1,17 @@
+{
+  "type": "script",
+  "enabled": false,
+  "name": "dona快V · 战术播报",
+  "id": "57c6ad80-711a-4d83-96a0-8d54fe7da465",
+  "content": "import 'https://cdn.jsdelivr.net/gh/3086013261qq-hue/dona-QuickV@v0.1.0-beta.2/frontend/broadcast/cloud/v0.1.0-beta.2.js';",
+  "info": "dona 0.1.0-beta.2；Quick V 0.6.5；启用时一次下载并校验播报源码，不轮询更新。关闭/删除脚本可卸载。",
+  "button": {
+    "enabled": false,
+    "buttons": []
+  },
+  "data": {},
+  "export_with": {
+    "data": false,
+    "button": false
+  }
+}
