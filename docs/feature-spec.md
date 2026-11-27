@@ -12,3 +12,6 @@
 | F06 兼容性 | 原版运行与无美化情况下均正常 | 不改认证、转发、凭据、请求或进程；不改变安全边界 |
 
 原版状态证据：extension/wait.js 创建 #quick-v-chat-wait；extension/failure-notice.js 创建 #quick-v-failure-notice，并设置 data-phase；extension/failure-client.js 维护状态和既有重试行为。酒馆助手只展示，不负责触发这些行为。原管理面板文件为 plugin/public/index.html、style.css、app.js。
+
+## 命名与署名规范
+管理面板保留上游正式名称及真实版本号，例如「快速 V 0.6.5 · dona美化」，美化版本独立编号，不以 dona快V 替代原项目名称或冒称后端作者。仓库名 dona-QuickV 保持不变；独立酒馆助手悬浮播报脚本可称「dona快V · 战术播报」。保留原作者署名与许可声明，不推测未核实的作者名称。
